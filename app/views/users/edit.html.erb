@@ -1,28 +1,20 @@
-
+<% if @user.errors.any? %>
+  <div>
+    <h2><%= pluralize(@user.errors.count, "error") %> prevented this user from being saved. </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with model: @user do |form| %>
-  <div>
-    <% @user.errors.full_messages.each do |message| %>
-      <div> <%= message %> </div>
-    <% end %>
-  </div>
-  </div>
-  <div>
-    <%= form.label :username, "Your Username Here: " %>
-    <%= form.text_field :username, placeholder: "yourusername1" %><br>
-  </div>
-  
-  <div>
-    <%= form.label :email, "Email: " %>
-    <%= form.email_field :email, placeholder: "example@example.com" %><br>
-  </div>
-
-  <div>
-    <%= form.label :password, "Password: " %>
-    <%= form.password_field :password, placeholder: "*********" %><br>
-  </div>
-  
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.label :username, "Your Username Here: " %>
+  <%= form.text_field :username, placeholder: "yourusername1" %><br>
+  <%= form.label :email, "Email: " %>
+  <%= form.email_field :email, placeholder: "example@example.com" %><br>
+  <%= form.label :password, "Password: " %>
+  <%= form.password_field :password, placeholder: "*********" %><br>
+  <%= form.submit %>
 <% end %>
